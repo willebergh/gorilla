@@ -12,8 +12,6 @@ module.exports = function (question, options) {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
-            prompt: "[!] Wille > ",
-            terminal: false
         })
 
         options = {
@@ -32,20 +30,11 @@ module.exports = function (question, options) {
 
         if (options.bottom) readline.cursorTo(process.stdout, 0, windowSize.height);
 
-        rl.prompt();
-        rl.on("line", line => {
-            rl.close();
-            return resolve(line);
-        })
-
-
-        /**
-         * rl.question(question, awnser => {
+        rl.question(question, awnser => {
             if (options.bottom) readline.moveCursor(process.stdout, 0, -1);
             rl.close();
             return resolve(awnser);
         })
-         */
 
         rl._writeToOutput = function _writeToOutput(stringToWrite) {
             if (rl.stdoutMuted)

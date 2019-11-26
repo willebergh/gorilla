@@ -2,7 +2,7 @@ const
     express = require("express"), app = express(),
     server = require("http").createServer(app),
     io = require("socket.io")(server),
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 3000;
 
 
 const rooms = io.of("/rooms");

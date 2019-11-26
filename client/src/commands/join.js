@@ -1,20 +1,19 @@
 const windowSize = require("window-size");
 const term = require("terminal-kit").terminal;
 const readline = require('readline');
+const config = require("config");
 
 var user;
 
 module.exports = function (room) {
-    const socket = require("socket.io-client")("http://localhost:3000/rooms");
+    const server = config.get("server");
+    const user = config.get("user");
+    const socket = require("socket.io-client")(server + "/rooms");
     socket.on("connect", () => {
-        socket.emit("join-room", {
-            user: { username: "Wille" }, room
-        });
-
+        socket.emit("join-room", { user, room });
     })
 
     socket.on("room-joined", data => {
-        user = data.user;
         rl.setPrompt(`[!] ${user.username} > `);
         rl.prompt();
     })
