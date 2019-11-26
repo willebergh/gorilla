@@ -1,8 +1,0 @@
-{
-    "server": "http://localhost:3000",
-    "apiKey": "5591a11f-520e-42f8-980f-32eb8f6dc7b5",
-    "user": {
-        "fullName": "William Bergh",
-        "username": "wille"
-    }
-}
