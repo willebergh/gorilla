@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const spawnGorilla = require("./src/utils/spawnGorilla");
 spawnGorilla(true, () => {
     const commander = require("commander");

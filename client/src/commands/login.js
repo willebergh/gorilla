@@ -21,7 +21,7 @@ module.exports = async function () {
                 axios.get(url + "/user", { headers: { "DG-API-KEY": apiKey } })
                     .then(res => {
                         const { fullName, username } = res.data.user;
-                        updateConfig({ apiKey, user: { fullName, username } })
+                        updateConfig({ apiKey, user: { fullName, username }, server: "https://h020-3000.dampgang.com" })
                             .then(() => {
                                 spinner.succeed(`Welcome back ${fullName}`);
                             })
