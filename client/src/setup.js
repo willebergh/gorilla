@@ -53,7 +53,7 @@ module.exports = function () {
         }
 
         function initEnvironment(callback) {
-            const data = templates.dotenv(config);
+            const data = templates.dotenv(dir);
             fs.writeFile(dotenv, data, "utf8", err => {
                 if (err) return reject(err);
                 callback();
