@@ -12,7 +12,8 @@ setup()
     })
 
 function cli() {
-    require("dotenv").config();
+    const dotenv = require("path").join(__dirname, ".env");
+    require("dotenv").config({ path: dotenv });
     const commander = require("commander");
     const program = new commander.Command();
 
