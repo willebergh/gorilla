@@ -10,9 +10,12 @@ module.exports = function () {
             : process.env.HOME
         const dir = path.join(home, ".gorilla");
         const config = path.join(dir, "default.json");
+        const dotenv = path.join(__dirname, "..", ".env");
 
         checkConfigDir(() => {
-            return resolve();
+            initEnvironment(() => {
+                return resolve();
+            })
         })
 
         function checkConfigDir(callback) {
@@ -42,8 +45,18 @@ module.exports = function () {
         }
 
         function createConfigFile(callback) {
-            const data = JSON.stringify(template, false, 4);
+            const data = JSON.stringify(templates.config, false, 4);
             fs.writeFile(config, data, "utf8", err => {
+                if (err) return reject(err);
+                initEnvironment(() => {
+                    callback();
+                })
+            })
+        }
+
+        function initEnvironment(callback) {
+            const data = templates.dotenv(config);
+            fs.writeFile(dotenv, data, "utf8", err => {
                 if (err) return reject(err);
                 callback();
             })
@@ -51,13 +64,18 @@ module.exports = function () {
     })
 }
 
-const template = {
-    server: "",
-    apiKey: "",
-    user: {
-        fullName: "",
-        username: "",
-        chatColor: "",
+const templates = {
+    config: {
+        server: "",
+        apiKey: "",
+        user: {
+            fullName: "",
+            username: "",
+            chatColor: "",
+        }
     },
+    dotenv: NODE_CONFIG_DIR => {
+        return `NODE_CONFIG_DIR=${NODE_CONFIG_DIR}\nSUPPRESS_NO_CONFIG_WARNING=true`;
+    }
 
 }
