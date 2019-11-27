@@ -23,4 +23,10 @@ const commands = [
         desc: "Join a chat room",
         action: room => require("./join")(room)
     },
+    {
+        cmd: "settings <subCmd> [args]",
+        desc: "View your current settings",
+        //desc: "Change your settings",
+        action: (subCmd, args) => require("./settings")(subCmd, args)
+    }
 ]

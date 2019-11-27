@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = function (override) {
     return new Promise((resolve, reject) => {
-        const filePath = path.join(__dirname, "..", "..", "config", "default.json");
+        const filePath = path.join(process.env.NODE_CONFIG_DIR, "default.json")
         const config = JSON.parse(fs.readFileSync(filePath));
         const updated = {
             ...config,
