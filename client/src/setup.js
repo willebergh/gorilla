@@ -13,9 +13,7 @@ module.exports = function () {
         const dotenv = path.join(__dirname, "..", ".env");
 
         checkConfigDir(() => {
-            initEnvironment(() => {
-                return resolve();
-            })
+            return resolve();
         })
 
         function checkConfigDir(callback) {
