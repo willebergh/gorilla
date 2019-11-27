@@ -19,6 +19,7 @@ function cli() {
     const commands = require("./src/commands");
     commands.init(program);
     program
+        .name("gorilla")
         .version("0.0.1")
         .parse(process.argv);
 }
