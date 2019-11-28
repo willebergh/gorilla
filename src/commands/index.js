@@ -18,6 +18,8 @@ module.exports.init = function init(program, cmdList) {
             Object.entries(obj).forEach(([key, value]) => {
                 if (key === "command") {
                     cmdObj = program[key](...value);
+                } else if (key === "option") {
+                    cmdObj[key](...value);
                 } else {
                     cmdObj[key](value);
                 }
@@ -29,14 +31,25 @@ module.exports.init = function init(program, cmdList) {
 const commands = {
     root: [
         {
-            command: ["login"],
-            description: "Sign in to your account",
-            action: require("./login")
+            command: ["connect [username@server]"],
+            description: "Connect to a server",
+            action: (userAtServer) => require("./connect")(userAtServer)
         },
         {
             command: ["join <room>"],
             description: "Join a chat room",
             action: room => require("./join")(room)
+        },
+        {
+            command: ["login"],
+            description: "Sign in to your account",
+            action: require("./login")
+        },
+        {
+            command: ["serve <port>"],
+            description: "Run the chat server",
+            option: ["-p, --password <pwd>", "Enable password protection"],
+            action: (port, cmdObj) => require("./serve")(port, cmdObj)
         },
         {
             command: ["settings", "Mange settings"],
