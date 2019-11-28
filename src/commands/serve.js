@@ -8,10 +8,20 @@ module.exports = function (port, cmdObj) {
 
     const middleware = require("../middleware/websocket");
     const lobby = io.of("/lobby");
+    const users = [];
+
     lobby
-        .use((...args) => middleware(password, ...args))
+        .use((...args) => middleware(password, users, ...args))
         .on("connect", socket => {
-            console.log("sad")
+            const username = socket.handshake.query.username;
+            console.log(`[-]: ${username} connected to the server!`)
+            console.log(`  ┗► Users online: ${users.length}`)
+
+            socket.on("disconnect", () => {
+                users.splice(users.indexOf(username), 1);
+                console.log(`[-]: ${username} disconnected from the server!`)
+                console.log(`  ┗► Users online: ${users.length}`)
+            })
         })
 
     const rooms = io.of("/rooms");
