@@ -1,14 +1,8 @@
 {
-  "name": "gorilla",
-  "version": "0.0.1",
-  "description": "",
+  "name": "@willebergh/gorilla",
+  "version": "0.0.2",
+  "description": "Command line chat client and server",
   "main": "cli.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "cli-spinners": "^2.2.0",
@@ -25,6 +19,25 @@
     "terminal-kit": "^1.31.7",
     "window-size": "^1.1.1"
   },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willebergh/gorilla.git"
+  },
+  "keywords": [
+    "gorilla",
+    "chat",
+    "cli"
+  ],
+  "author": "William Bergh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willebergh/gorilla/issues"
+  },
+  "homepage": "https://github.com/willebergh/gorilla#readme",
   "bin": {
     "gorilla": "./cli.js"
   }

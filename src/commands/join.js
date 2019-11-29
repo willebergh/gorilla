@@ -5,7 +5,7 @@ const config = require("config");
 
 var user;
 
-module.exports = function (room) {
+module.exports = function (room, callback) {
     const server = config.get("server");
     const user = config.get("user");
     const socket = require("socket.io-client")(server + "/rooms");
@@ -46,6 +46,11 @@ module.exports = function (room) {
     readline.cursorTo(process.stdout, 0, windowSize.height);
     rl.on("line", line => {
         readline.moveCursor(process.stdout, 0, -1)
+        if (line === "/exit") {
+            socket.disconnect();
+            rl.pause();
+            return callback();
+        }
         socket.emit("send-message", line);
     })
 

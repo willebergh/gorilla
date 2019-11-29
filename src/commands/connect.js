@@ -52,6 +52,28 @@ function initSocket(server, query) {
 
     socket.on("connect", () => {
         tries = 0;
+        prompt.delimiter = ">";
         spinner.succeed("Connected!");
+        getCmd();
+
+        function getCmd() {
+            prompt.get([{
+                name: "cmd",
+                message: "gorilla",
+                required: true
+            }], (err, res) => {
+                if (res.cmd.startsWith("/")) {
+                    return handleCommand(res.cmd, () => getCmd());
+                } else {
+                    return getCmd();
+                }
+            })
+        }
     })
+}
+
+function handleCommand(cmd, callback) {
+    const args = cmd.split(" ");
+    if (cmd.startsWith("/join")) require("./join")(args[1], callback)
+
 }
