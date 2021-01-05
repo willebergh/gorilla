@@ -4,7 +4,7 @@
   "description": "Command line chat client and server",
   "main": "cli.js",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cli-spinners": "^2.2.0",
     "colors": "^1.4.0",
     "commander": "^4.0.1",
