@@ -16,7 +16,7 @@
     "prompt": "^1.0.0",
     "readline-utils": "^2.2.3",
     "socket.io": "^2.3.0",
-    "terminal-kit": "^1.31.7",
+    "terminal-kit": "^3.0.0",
     "window-size": "^1.1.1"
   },
   "devDependencies": {},
